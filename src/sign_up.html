@@ -2,7 +2,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9 ie8"> <![endif]-->
 <!--[if IE 9]>         <html class="no-js gt-ie9 ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js gt-ie9"> <!--<![endif]-->
-  <head>
+<head>
     <!--
 
       Description:
@@ -52,45 +52,47 @@
     <!-- Modernizer, cause some browsers suck -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-    </head>
+</head>
   <body>
 
-    <!-- Add your site or application here -->
+  <!-- Add your site or application here -->
 
-    <div class="container wrapper">
+  <div class="container wrapper">
       <div class="row">
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">Tasks</h3>
+            <h3 class="panel-title">Sign Up</h3>
           </div>
           <div class="panel-body">
-            <div class="row">
-              <div class="col-md-11">
-                <div class="form-group">
-                  <input class="form-control" type="text" id="task-name" />
-                </div>
-              </div>
-              <div>
-                <div class="actions">
-                  <button id="add-task-btn" class="btn btn-default">Save task</button>
-                </div>
-              </div>
-            </div>
-            <hr/>
-            <div id="tasks-list">
-
-            </div>
+            <form novalidate="true">
+             <div id="email" class="form-group">
+               <label for="exampleInputEmail1">Email address</label>
+               <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+             </div>
+             <div id="password" class="form-group">
+               <label for="exampleInputPassword1">Password</label>
+               <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+             </div>
+             <div id="password_confirmation" class="form-group">
+               <label for="exampleInputPassword2">Password Confirmation</label>
+               <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Confirm Password">
+             </div>
+             <div class="actions">
+               <button type="submit" id="submitBtn" class="btn btn-primary">Sign up</button>
+               <a class="btn btn-default" href="sign_in.html">Sign in</a>
+             </div>
+           </form>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SCRIPTS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-    <script>IndexPage.init();</script>
+  <!-- SCRIPTS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+  <script>SignUp.init();</script>
 
-    <!-- Google Analytics -->
+  <!-- Google Analytics -->
 
   </body>
 </html>
