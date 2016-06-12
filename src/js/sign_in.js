@@ -10,8 +10,8 @@ var SignIn = {
     },
     signInForm: function () {
         event.preventDefault();
-        var userEmail = document.getElementById('exampleInputEmail1').value;
-        var userPass = document.getElementById('exampleInputPassword1').value;
+        var userEmail = document.getElementById('exampleInputEmail2').value;
+        var userPass = document.getElementById('exampleInputPassword2').value;
         var userData = {
             email: userEmail,
             password: userPass
