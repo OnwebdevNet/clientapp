@@ -8,6 +8,7 @@ var IndexPage = {
     }
     this.loadTasks();
     this.taskInput = document.getElementById('task-name');
+    this.taskContent = document.getElementById('tasks-list');
     document.getElementById('add-task-btn').addEventListener('click', this.sendCreateRequest.bind(this));
   },
 
@@ -15,6 +16,12 @@ var IndexPage = {
     // Обьявляем функцию колбек
     var loadTasksCallback = function(data) {
       this.tasks = data;
+
+      for(var i=0; i < data.length; i++){
+        var listItem = document.createElement('p');
+        listItem.innerHTML = data[i].name;
+        this.taskContent.appendChild(listItem);
+      }
     };
 
     $.ajax({
@@ -35,6 +42,9 @@ var IndexPage = {
     // Обьявляем функцию колбек
     var successCallback = function(data) { 
       this.tasks.push({ name: this.taskInput.value });
+      var listItem = document.createElement('p');
+      listItem.innerHTML = this.taskInput.value;
+      this.taskContent.appendChild(listItem);
     };
 
     $.ajax({
