@@ -1,10 +1,9 @@
 var SignUp = {
   init: function() {
     User.loadUser();
-
-    var hostApp = location.host;
+    
     if (User.authorized) {
-      window.location.replace(hostApp);
+      window.location.replace(window.location.protocol + '//' + window.location.host + '/' + 'index.html');
     }
     this.emailInput = document.getElementById('exampleInputEmail1');
     this.passInput = document.getElementById('exampleInputPassword1');

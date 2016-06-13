@@ -4,11 +4,11 @@ var SignIn = {
         this.checkAuthorization();
     },
     initEvents: function () {
-        if (document.getElementById('signInForm') != null) {
-            document.getElementById('signInForm').addEventListener('submit', this.signInForm.bind(this));
+        if (document.getElementById('signInUser') != null) {
+            document.getElementById('signInUser').addEventListener('submit', this.signInUser.bind(this));
         }
     },
-    signInForm: function () {
+    signInUser: function () {
         event.preventDefault();
         var userEmail = document.getElementById('exampleInputEmail2').value;
         var userPass = document.getElementById('exampleInputPassword2').value;
