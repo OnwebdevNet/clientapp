@@ -1,52 +1,43 @@
 var SignIn = {
     init: function () {
+        User.loadUser();
+        //console.log('true');
+        if (User.authorized) {
+            window.location.replace(window.location.protocol + '//' + window.location.host + '/' + 'index.html');
+        }
+        this.emailInput = document.getElementById('exampleInputEmail2');
+        this.passInput = document.getElementById('exampleInputPassword2');
         this.initEvents();
-        this.checkAuthorization();
+
     },
     initEvents: function () {
-        if (document.getElementById('signInUser') != null) {
-            document.getElementById('signInUser').addEventListener('submit', this.signInUser.bind(this));
-        }
+        document.getElementById('signInUser').addEventListener('click', this.signInUser.bind(this));
     },
     signInUser: function () {
         event.preventDefault();
-        var userEmail = document.getElementById('exampleInputEmail2').value;
-        var userPass = document.getElementById('exampleInputPassword2').value;
+        console.log('true');
         var userData = {
-            email: userEmail,
-            password: userPass
+            email: this.emailInput.value,
+            password: this.passInput.value
         };
-        this.authorizationUser(userData);
-    },
-    authorizationUser: function (userData) {
+
         $.ajax({
             type: 'POST',
             url: 'http://spalah-home.herokuapp.com/auth/sign_in.json',
             contentType: "application/json; charset=utf-8",
             data: JSON.stringify(userData),
             success: function (data, textStatus, request) {
-                localStorage.setItem('Access-Token', request.getResponseHeader('Access-Token'));
-                localStorage.setItem('Client', request.getResponseHeader('Client'));
-                localStorage.setItem('Token-Type', request.getResponseHeader('Token-Type'));
-                localStorage.setItem('Uid', request.getResponseHeader('Uid'));
+                console.log(data);
+                var accessHeaders = {
+                    'Access-Token': request.getResponseHeader('Access-Token'),
+                    'Client': request.getResponseHeader('Client'),
+                    'Uid': request.getResponseHeader('Uid'),
+                    'Token-Type': request.getResponseHeader('Token-Type')
+                };
+                User.authorize(data, accessHeaders);
 
                 window.location.replace(window.location.protocol + '//' + window.location.host + '/' + 'index.html');
-            },
-            error: function (request, textStatus, errorThrown) {
-
             }
         });
-    },
-    checkAuthorization: function () {
-        var currentLocation = window.location.protocol + '//' + window.location.host + '/' + window.location.pathname;
-        if (currentLocation === window.location.protocol + '//' + window.location.host + '/' + 'index.html') {
-            if (!localStorage.getItem('Access-Token') || !localStorage.getItem('Client') || !localStorage.getItem('Token-Type') || !localStorage.getItem('Uid')){
-                window.location.replace(window.location.protocol + '//' + window.location.host + '/' + 'sign_in.html');
-            }
-        } else if (currentLocation === window.location.protocol + '//' + window.location.host + '/' + 'sign_in.html') {
-            if (localStorage.getItem('Access-Token') && localStorage.getItem('Client') && localStorage.getItem('Token-Type') && localStorage.getItem('Uid')){
-                window.location.replace(window.location.protocol + '//' + window.location.host + '/' + 'index.html');
-            }
-        }
     }
 };
